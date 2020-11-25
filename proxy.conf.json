@@ -1,0 +1,18 @@
+{
+  "/user-service/*": {
+    "target": "http://localhost:8011/",
+    "secure": false
+  },
+  "/patient-service/*": {
+    "target": "http://localhost:8021/",
+    "secure": false
+  },
+  "/search-service/*": {
+    "target": "http://localhost:8041/",
+    "secure": false
+  },
+  "/booking-service/*": {
+    "target": "http://localhost:8051/",
+    "secure": false
+  }
+}

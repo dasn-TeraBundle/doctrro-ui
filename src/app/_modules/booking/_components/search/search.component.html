@@ -1,0 +1,25 @@
+<h3>Search for Doctors</h3>
+
+<div>
+  <form #f="ngForm" (ngSubmit)="f.valid && searchDoctor()">
+    <mat-form-field>
+      <mat-label>Radius</mat-label>
+      <input matInput type="number" [(ngModel)]="criteria.radius" (change)="onChangeSearchParams()"
+             min="1" max="30" name="radius" required>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Speciality</mat-label>
+      <mat-select name="speciality" [(ngModel)]="criteria.speciality" (selectionChange)="onChangeSearchParams()">
+        <mat-option value="Medicine">Medicine</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-raised-button>Search</button>
+  </form>
+</div>
+
+<div>
+  <p *ngFor="let doctor of doctors$ | async">
+    <app-doctor [doctor]="doctor"></app-doctor>
+  </p>
+</div>

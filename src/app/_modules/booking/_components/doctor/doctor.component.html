@@ -1,0 +1,39 @@
+<div class="doctor-card" style="width: 100%">
+  <div class="d-flex">
+    <div style="width: 20%"></div>
+    <div style="width: 80%">
+
+      <div class="doctor-title">
+        <span>
+          {{doctor.name}}
+        </span>
+        <span>
+          <star-rating [rating]="doctor.rating" [labelText]="ratingLabel"
+                       [labelPosition]="'right'" [readOnly]="true" [showHalfStars]="true">
+          </star-rating>
+        </span>
+      </div>
+
+      <div class="doctor-details">
+        {{doctor.speciality}} {{doctor.degree}}
+        <br/>
+        {{doctor.experience}} years of experience
+      </div>
+
+      <div>
+        <div class="clinic-details" *ngFor="let clinic of doctor.clinics">
+            <span>
+              {{clinic.name}}
+              <br/>
+              Location:
+            </span>
+          <span>
+              <button mat-raised-button color="primary" (click)="goToBooking(clinic.id)">Book</button>
+            </span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,13 @@
+<div class="h-80">
+  <!--<router-outlet></router-outlet>-->
+  <nav mat-tab-nav-bar>
+    <a mat-tab-link *ngIf="isPatient"
+       (click)="navigateTabs('BOOK_APT')"
+       [active]="this.activeTab == 'BOOK_APT'">Book Appointments</a>
+    <a mat-tab-link
+       (click)="navigateTabs('APTS')"
+       [active]="this.activeTab == 'APTS'" >My Appointments</a>
+  </nav>
+
+  <router-outlet></router-outlet>
+</div>

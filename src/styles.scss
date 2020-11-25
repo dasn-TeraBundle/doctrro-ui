@@ -1,0 +1,94 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.container {
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.d-flex {
+  display: flex;
+}
+
+@mixin w {
+  @for $i from 1 through 100 {
+    .w-#{$i} {
+      width: $i * 1%;
+    }
+  }
+}
+
+@include w;
+
+.h-10 {
+  height: 10vh;
+}
+
+.h-80 {
+  height: 80vh;
+}
+
+.h-100 {
+  height: 100vh;
+}
+
+@mixin p {
+  @for $i from 1 through 10 {
+    .p-#{$i} {
+      padding: $i * 1% !important;
+    }
+  }
+}
+
+@include p;
+
+.border {
+  border: 1px solid;
+}
+
+
+@import '~css-star-rating/css/star-rating';
+
+.rating.color-negative .star-container .star {
+  svg {
+    fill: #f00 !important;
+  }
+  i {
+    color: #f00 !important;
+  }
+}
+
+.rating.color-ok .star-container .star {
+  svg {
+    fill: #0f0 !important;
+  }
+  i {
+    color: #0f0 !important;
+  }
+}
+
+.rating.color-positive .star-container .star {
+  svg {
+    fill: #198607 !important;
+  }
+  i {
+    color: #198607 !important;
+  }
+}
+
+.rating.color-default .star-container .star {
+  svg {
+    fill: #1a1a0d !important;
+  }
+  i {
+    color: #1a1a0d !important;
+  }
+}

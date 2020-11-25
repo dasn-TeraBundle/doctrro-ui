@@ -1,0 +1,148 @@
+<div class="h-80">
+  <mat-horizontal-stepper [linear]="true" #stepper>
+
+    <mat-step [stepControl]="personal.control" label="Personal Data">
+      <form #personal="ngForm">
+        <div>
+          <mat-form-field>
+            <mat-label>Sex</mat-label>
+            <mat-select name="sex" [(ngModel)]="patientReq.sex" required>
+              <mat-option value="M">Male</mat-option>
+              <mat-option value="F">Female</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <mat-label>Blood Group</mat-label>
+            <mat-select name="bloodGroup" [(ngModel)]="patientReq.bloodGroup" required>
+              <mat-option value="A+">A+</mat-option>
+              <mat-option value="O-">O-</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <mat-label>Choose a date</mat-label>
+            <input matInput [matDatepicker]="picker" required>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <mat-label>Height</mat-label>
+            <input matInput type="number" name="height" [(ngModel)]="patientReq.height" required>
+          </mat-form-field>
+        </div>
+        <div>
+          <mat-form-field>
+            <mat-label>Weight</mat-label>
+            <input matInput type="number" name="weight" [(ngModel)]="patientReq.weight" required>
+          </mat-form-field>
+        </div>
+
+        <div>
+          <button mat-raised-button matStepperNext color="primary">Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="lifestyle.control" label="Lifestyle">
+      <div>
+        <form #lifestyle="ngForm">
+          <div>
+            <mat-form-field>
+              <mat-label>Smoke</mat-label>
+              <mat-select name="smoke" [(ngModel)]="patientReq.smoke" required>
+                <mat-option value="I don't smoke">I don't smoke</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field>
+              <mat-label>Alcohol</mat-label>
+              <mat-select name="alcohol" [(ngModel)]="patientReq.alcohol" required>
+                <mat-option value="I don't drink">I don't drink</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field>
+              <mat-label>Diet</mat-label>
+              <mat-select name="diet" [(ngModel)]="patientReq.diet" required>
+                <mat-option value="Non Vegeterian">Non vegetarian</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field>
+              <mat-label>Activity</mat-label>
+              <mat-select name="activity" [(ngModel)]="patientReq.activity" required>
+                <mat-option value="Light activity">Light activity</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field>
+              <mat-label>Married</mat-label>
+              <mat-select name="married" [(ngModel)]="patientReq.married" required>
+                <mat-option value="Married">Married</mat-option>
+                <mat-option value="Unmarried">Unmarried</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div>
+            <button mat-raised-button matStepperPrevious color="primary">Previous</button>
+            <button mat-raised-button matStepperNext color="primary">Next</button>
+          </div>
+
+        </form>
+      </div>
+    </mat-step>
+
+    <mat-step [stepControl]="medical.control" label="Medical">
+      <form #medical="ngForm">
+        <div>
+          <mat-label>Chronic Diseases</mat-label>
+          <section class="example-section">
+            <mat-checkbox *ngFor="let ds of chronicDiseases" [name]="ds" (change)="chronicDiseasesSelected($event, ds)">{{ds}}</mat-checkbox>
+          </section>
+        </div>
+        <div>
+          <button mat-raised-button matStepperPrevious color="primary">Previous</button>
+          <button mat-raised-button matStepperNext color="primary">Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step>
+      <ng-template matStepLabel>Submit</ng-template>
+      <p>Verify and Submit</p>
+      <div>
+        <table>
+          <tbody *ngIf="user$ | async as u">
+          <tr>
+            <td>Name</td>
+            <td>{{u.name}}</td>
+          </tr>
+          <tr>
+            <td>Email</td>
+            <td>{{u.email}}</td>
+          </tr>
+          <tr>
+            <td>Sex</td>
+            <td>{{patientReq.sex}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <button mat-raised-button matStepperPrevious color="primary" [disabled]="isSubmitted">Previous</button>
+        <button mat-raised-button (click)="register()" color="primary" [disabled]="isSubmitted">Register</button>
+        <button mat-raised-button (click)="stepper.reset()" [disabled]="isSubmitted">Reset</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+</div>

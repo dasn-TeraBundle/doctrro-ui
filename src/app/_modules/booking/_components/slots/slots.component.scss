@@ -1,0 +1,18 @@
+.slots {
+  border-radius: 100%;
+
+  &-available {
+    @extend .slots;
+    background-color: green;
+  }
+
+  &-booked {
+    @extend .slots;
+    background-color: red;
+  }
+
+  &-locked {
+    @extend .slots;
+    background-color: #888484;
+  }
+}
